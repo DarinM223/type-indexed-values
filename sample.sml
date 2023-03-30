@@ -35,11 +35,22 @@ val a_graph =
     a
   end
 
+type 'a person = {name: string, age: int, data: 'a}
+
+fun person a =
+  let
+    open Show Product
+  in
+    inj (fn {name, age, data} => name & age & data) (record
+      (L "name" string * L "age" int * L "data" a))
+  end
+
 val _ =
   let
     open Show
   in
     print (show (list int) [1, 3, 4] ^ "\n");
     print (show (option (option string)) (SOME (SOME "hello")) ^ "\n");
-    print (show (graph int) a_graph ^ "\n")
+    print (show (graph int) a_graph ^ "\n");
+    print (show (person int) {name = "bob", age = 25, data = 420} ^ "\n")
   end
