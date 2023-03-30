@@ -1,4 +1,6 @@
 infixr -->
+infix &
+infix <\
 
 signature SHOW =
 sig
@@ -55,6 +57,7 @@ end
 
 structure SmlSyntax =
 struct
+
   local structure CV = CharVector and C = Char
   in
     val isSym = Char.contains "!%&$#+-/:<=>?@\\~`^|*"
@@ -72,11 +75,8 @@ struct
     fun isId s = isAlphaNumId s orelse isSymId s
 
     fun isLongId s =
-      let
-        open Fn
-        infix <\
-      in
-        List.all isId (String.fields (#"." <\ op=) s)
+      let open Fn
+      in List.all isId (String.fields (#"." <\ op=) s)
       end
 
     fun isLabel s = isId s orelse isNumLabel s
@@ -90,8 +90,6 @@ struct
   type ('a, 'k) p = 'a t
   type u = unit
   type l = unit
-
-  infix &
 
   fun show (IN t) x =
     #2 (t ([], x))

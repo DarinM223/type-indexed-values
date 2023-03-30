@@ -1,9 +1,10 @@
+infix &
+
 structure Tie :> TIE =
 struct
   open Product
-  infix &
-  type 'a etaexp_dom = Unit.t
-  type 'a etaexp_cod = ('a * 'a UnOp.t) Thunk.t
+  type 'a etaexp_dom = unit
+  type 'a etaexp_cod = ('a * ('a -> 'a)) Thunk.t
   type 'a etaexp = 'a etaexp_dom -> 'a etaexp_cod
   type 'a t = 'a etaexp
   fun fix aT f =
@@ -30,9 +31,10 @@ struct
     pure ((fn (a, ua) => (a, Fn.const a o ua)) o th)
   fun id x =
     pure (Fn.const (x, Fn.id))
+  exception Fix
   fun function ? =
     Fn.const
-      (fn () => let val r = ref (Basic.raising Fix.Fix)
+      (fn () => let val r = ref (fn _ => raise Fix)
                 in (fn x => !r x, fn f => (r := f; f))
                 end) ?
 end

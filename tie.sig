@@ -11,8 +11,8 @@ sig
   type 'a t = 'a etaexp
 
   val fix: 'a t -> 'a Fix.t
-  val pure: ('a * 'a UnOp.t) Thunk.t -> 'a t
-  val tier: ('a * 'a Effect.t) Thunk.t -> 'a t
+  val pure: ('a * ('a -> 'a)) Thunk.t -> 'a t
+  val tier: ('a * ('a -> unit)) Thunk.t -> 'a t
   val id: 'a -> 'a t
   val iso: 'b t -> ('a, 'b) Iso.t -> 'a t
   val product: 'a t * ('a -> 'b t) -> ('a, 'b) Product.t t
