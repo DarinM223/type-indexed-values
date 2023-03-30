@@ -1,0 +1,7 @@
+before_tie.sml
+tie.sig
+ann "milletDiagnosticsIgnore all" in
+  tie.sml
+end
+after_tie.sml
+sample.sml
