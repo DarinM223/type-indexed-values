@@ -1,10 +1,6 @@
 fun option t =
-  let
-    open Show Sum
-  in
-    inj (fn NONE => INL ()
-     | SOME v => INR v)
-     (data (C0 "NONE" + C1 "SOME" t))
+  let open Show Sum
+  in inj (fn NONE => INL () | SOME v => INR v) (data (C0 "NONE" + C1 "SOME" t))
   end
 
 val _ =

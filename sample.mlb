@@ -4,5 +4,5 @@ tie.sig
 ann "milletDiagnosticsIgnore all" in
   tie.sml
 end
-after_tie.sml
+show.sml
 sample.sml
