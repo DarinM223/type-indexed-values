@@ -1,3 +1,4 @@
+$(SML_LIB)/basis/basis.mlb
 before_tie.sml
 tie.sig
 ann "milletDiagnosticsIgnore all" in

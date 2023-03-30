@@ -27,6 +27,6 @@ structure Tie :> TIE = struct
        Fn.const (fn () => let
                    val r = ref (Basic.raising Fix.Fix)
                 in
-                   (fn x => !r x, fn f => (r := SOME f ; f))
+                   (fn x => !r x, fn f => (r := f ; f))
                 end) ?
 end
