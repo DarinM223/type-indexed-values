@@ -1,4 +1,3 @@
-structure Exn = struct type t = exn end
 structure Bool =
 struct
   open Bool
@@ -94,7 +93,6 @@ struct
   fun iso isos =
     map (map, map) (swizzle isos)
 end
-
 
 structure Sum =
 struct

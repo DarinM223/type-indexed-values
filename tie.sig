@@ -1,13 +1,9 @@
-signature ETAEXP' =
+signature TIE =
 sig
   type 'a etaexp_dom
   and 'a etaexp_cod
   type 'a etaexp = 'a etaexp_dom -> 'a etaexp_cod
-end
 
-signature TIE =
-sig
-  include ETAEXP'
   type 'a t = 'a etaexp
 
   val fix: 'a t -> 'a Fix.t
